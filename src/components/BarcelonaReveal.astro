@@ -36,10 +36,15 @@ import barcelonaImg from '../assets/Barcelona.jpg';
 
 <script>
   const hero = document.getElementById('hero');
+  let raf: number | null = null;
   hero?.addEventListener('mousemove', (e) => {
-    const x = (e.clientX / window.innerWidth) * 100;
-    const y = (e.clientY / window.innerHeight) * 100;
-    hero.style.setProperty('--mx', x + '%');
-    hero.style.setProperty('--my', y + '%');
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      hero.style.setProperty('--mx', x + '%');
+      hero.style.setProperty('--my', y + '%');
+      raf = null;
+    });
   });
 </script>

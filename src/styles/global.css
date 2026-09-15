@@ -14,12 +14,15 @@ body {
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: rgb(var(--bg));
+	background: transparent;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: rgb(var(--fg));
 	font-size: 20px;
 	line-height: 1.7;
+}
+html {
+	background: rgb(var(--bg));
 }
 main {
 	width: 720px;
