@@ -6,7 +6,9 @@
     "node": ">=22.12.0"
   },
   "scripts": {
+    "predev": "rimraf .astro node_modules/.vite",
     "dev": "astro dev",
+    "prebuild": "rimraf .astro node_modules/.vite",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -20,5 +22,8 @@
   },
   "allowScripts": {
     "esbuild": true
+  },
+  "devDependencies": {
+    "rimraf": "^6.1.3"
   }
 }
