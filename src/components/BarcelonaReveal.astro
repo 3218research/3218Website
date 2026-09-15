@@ -1,0 +1,53 @@
+---
+import barcelonaImg from '../assets/Barcelona.jpg';
+---
+
+<div class="hero" id="hero" style={`--bg-url: url(${barcelonaImg.src})`}>
+  <div class="content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    --mx: 50%;
+    --my: 50%;
+    --radius: 110px;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--bg-url);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.03;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--bg-url);
+    background-size: cover;
+    background-position: center;
+    -webkit-mask-image: radial-gradient(circle var(--radius) at var(--mx) var(--my), black 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.1) 75%, transparent 100%);
+    mask-image: radial-gradient(circle var(--radius) at var(--mx) var(--my), black 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.1) 75%, transparent 100%);
+  }
+  .content {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+
+<script>
+  const hero = document.getElementById('hero');
+  hero?.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth) * 100;
+    const y = (e.clientY / window.innerHeight) * 100;
+    hero.style.setProperty('--mx', x + '%');
+    hero.style.setProperty('--my', y + '%');
+  });
+</script>
