@@ -2,49 +2,42 @@
 import barcelonaImg from '../assets/Barcelona.jpg';
 ---
 
-<div class="hero-bg" style={`--bg-url: url(${barcelonaImg.src})`}></div>
-<div class="spotlight" id="spotlight" style={`--bg-url: url(${barcelonaImg.src})`}></div>
+<div class="hero-image" style={`--bg-url: url(${barcelonaImg.src})`}></div>
+<div class="dark-overlay" id="overlay"></div>
 
 <style>
-  .hero-bg {
+  .hero-image {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image: var(--bg-url);
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+  }
+  .dark-overlay {
     position: fixed;
     inset: 0;
     z-index: -1;
-    background-image: var(--bg-url);
-    background-size: cover;
-    background-position: center;
-    opacity: 0.03;
+    background: rgb(26, 23, 18);
     pointer-events: none;
-  }
-  .spotlight {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    z-index: -1;
-    pointer-events: none;
-    background-image: var(--bg-url);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    transform: translate3d(-9999px, -9999px, 0);
-    will-change: transform;
-    -webkit-mask-image: radial-gradient(circle, black 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0.3) 70%, transparent 100%);
-    mask-image: radial-gradient(circle, black 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0.3) 70%, transparent 100%);
+    --mx: 50%;
+    --my: 50%;
+    --radius: 150px;
+    -webkit-mask-image: radial-gradient(circle var(--radius) at var(--mx) var(--my), transparent 0%, rgba(0,0,0,0.3) 60%, black 100%);
+    mask-image: radial-gradient(circle var(--radius) at var(--mx) var(--my), transparent 0%, rgba(0,0,0,0.3) 60%, black 100%);
   }
 </style>
 
 <script>
-  const spotlight = document.getElementById('spotlight') as HTMLElement | null;
-  const radius = 110;
+  const overlay = document.getElementById('overlay');
   let raf: number | null = null;
   window.addEventListener('mousemove', (e) => {
     if (raf) return;
     raf = requestAnimationFrame(() => {
-      if (spotlight) {
-        spotlight.style.transform = `translate3d(${e.clientX - radius}px, ${e.clientY - radius}px, 0)`;
+      if (overlay) {
+        overlay.style.setProperty('--mx', e.clientX + 'px');
+        overlay.style.setProperty('--my', e.clientY + 'px');
       }
       raf = null;
     });
