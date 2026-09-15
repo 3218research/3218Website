@@ -13,6 +13,7 @@ import barcelonaImg from '../assets/Barcelona.jpg';
     background-image: var(--bg-url);
     background-size: cover;
     background-position: center;
+    filter: brightness(0.5);
     pointer-events: none;
   }
   .dark-overlay {
@@ -23,9 +24,9 @@ import barcelonaImg from '../assets/Barcelona.jpg';
     pointer-events: none;
     --mx: 50%;
     --my: 50%;
-    --radius: 75px;
-    -webkit-mask-image: radial-gradient(circle var(--radius) at var(--mx) var(--my), transparent 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.5) 70%, black 100%);
-    mask-image: radial-gradient(circle var(--radius) at var(--mx) var(--my), transparent 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.5) 70%, black 100%);
+    --radius: 260px;
+    -webkit-mask-image: radial-gradient(circle var(--radius) at var(--mx) var(--my), transparent 0%, transparent 15%, black 100%);
+    mask-image: radial-gradient(circle var(--radius) at var(--mx) var(--my), transparent 0%, transparent 15%, black 100%);
   }
 </style>
 
