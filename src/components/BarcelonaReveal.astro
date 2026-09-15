@@ -2,17 +2,13 @@
 import barcelonaImg from '../assets/Barcelona.jpg';
 ---
 
-<div class="hero" id="hero" style={`--bg-url: url(${barcelonaImg.src})`}>
-  <div class="content">
-    <slot />
-  </div>
-</div>
+<div class="hero" id="hero" style={`--bg-url: url(${barcelonaImg.src})`}></div>
 
 <style>
   .hero {
-    position: relative;
-    height: 100vh;
-    width: 100%;
+    position: fixed;
+    inset: 0;
+    z-index: -1;
     --mx: 50%;
     --my: 50%;
     --radius: 110px;
@@ -35,10 +31,6 @@ import barcelonaImg from '../assets/Barcelona.jpg';
     background-position: center;
     -webkit-mask-image: radial-gradient(circle var(--radius) at var(--mx) var(--my), black 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.1) 75%, transparent 100%);
     mask-image: radial-gradient(circle var(--radius) at var(--mx) var(--my), black 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.1) 75%, transparent 100%);
-  }
-  .content {
-    position: relative;
-    z-index: 1;
   }
 </style>
 
